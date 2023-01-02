@@ -1,7 +1,5 @@
 locals {
-  source_image         = var.source_image != "" ? var.source_image : "centos-7-v20201112"
-  source_image_family  = var.source_image_family != "" ? var.source_image_family : "centos-7"
-  source_image_project = var.source_image_project != "" ? var.source_image_project : "centos-cloud"
+  source_image  = var.source_image != "" ? var.source_image : "centos-7"
 
   boot_disk = [
     {
@@ -10,7 +8,7 @@ locals {
       disk_type    = var.disk_type
       disk_labels  = var.disk_labels
       boot         = "true"
-    },
+    }
   ]
 
 }
@@ -19,7 +17,7 @@ locals {
 # Instance Template
 ####################
 resource "google_compute_instance_template" "tpl" {
-  name_prefix             = var.name_prefix
+  name                    = var.name
   project                 = var.project_id
   machine_type            = var.machine_type
   labels                  = var.labels
