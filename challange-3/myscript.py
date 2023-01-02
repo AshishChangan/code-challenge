@@ -4,15 +4,13 @@ def getKey(obj: dict):
     return keys[0]
 
 
-def getNestedValue(obj: dict, key: str, isFound = False):
-    # print(obj, key, isFound)
-    if type(obj) is not dict and not isFound:
+def getNestedValue(obj: dict, key: str, isPresent = False):
+    if type(obj) is not dict and not isPresent:
         return None
-    if (isFound or (key in obj.keys())) :
+    if (isPresent or (key in obj.keys())) :
         if type(obj[key]) is dict:
             return getNestedValue(obj[key], getKey(obj[key]), True)
         else:
-            # print(f'obj[getKey(obj)]: {obj[getKey(obj)]}')
             return obj[getKey(obj)]
     else:
         nestedKey = getKey(obj)
